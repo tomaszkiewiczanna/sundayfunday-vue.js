@@ -1,16 +1,16 @@
 <template>
-  <div class="wordpress">
+  <div class="learn">
     <router-link to="/">Back</router-link>
-    <h1 class="wordpress-head">{{msg}}</h1>
+    <h1 class="learn-head">{{msg}}</h1>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Wordpress',
+    name: 'Learn',
     data () {
       return {
-        msg: 'Wordpress things'
+        msg: 'Learn vue.js things'
       }
     }
   }

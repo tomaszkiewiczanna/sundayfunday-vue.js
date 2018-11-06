@@ -5,13 +5,19 @@ import VueRouter from 'vue-router'
 import App from './App'
 import HelloWorld from './components/HelloWorld'
 import Wordpress from './components/Wordpress'
+import Coffee from './components/Coffee'
+import Learn from './components/Learn'
+import Surprise from './components/Surprise'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
     {path: '/', component: HelloWorld},
-    {path: '/wordpress', component: Wordpress}
+    {path: '/wordpress', component: Wordpress},
+    {path: '/coffee', component: Coffee},
+    {path: '/learn', component: Learn},
+    {path: '/surprise', component: Surprise}
   ]
 })
 
