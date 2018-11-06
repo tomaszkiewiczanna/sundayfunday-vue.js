@@ -1,11 +1,16 @@
 <template>
   <div class="wordpress">
-    <h1 class="wordpress-head">wordpress stuff</h1>
+    <h1 class="wordpress-head">{{msg}}</h1>
   </div>
 </template>
 
 <script>
   export default {
-    name: Wordpress
+    name: 'Wordpress',
+    data () {
+      return {
+        msg: 'Wordpress things'
+      }
+    }
   }
 </script>
