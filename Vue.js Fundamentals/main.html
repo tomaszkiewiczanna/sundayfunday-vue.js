@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js fundamentals</title>
+</head>
+
+<body>
+    <style>
+        .strikeout {
+        text-decoration: line-through;
+    }
+    li:hover {
+        cursor: pointer;
+        color: darkblue;
+    }
+    </style>
+    <div id="shopping-list">
+        <div class="header">
+            <h1>{{ header.toLocaleUpperCase() }}</h1>
+            <button v-if="state === 'default'" class="btn btn-primary" @click="changeState('edit')">Add Item</button>
+            <button v-else class="btn btn-cancel" @click="changeState('default')">Cancel Adding Item</button>
+        </div>
+        <div v-if=" state === 'edit'" class="add-item-form">
+            <input @keyup.enter="saveItem" v-model="newItem" type="text" placeholder="Add item to the shopping list">
+            <button :disabled="newItem.length === 0" class="button" @click="saveItem">Add to list</button>
+        </div>
+        <ul>
+            <li v-for="item in reversedItems" :class="{strikeout: item.purchased}" @click="togglePurchased(item)">{{item.label}}</li>
+        </ul>
+        <p v-if="items.length === 0">Nice job! You've bought all your items.</p>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var shoppingList = new Vue({
+            el: '#shopping-list',
+            data: {
+                state: 'default',
+                header: 'shopping list app',
+                newItem: '',
+                items: [
+                    {
+                        label: '10 party hats',
+                        purchased: false,
+                        highPriority: false,
+                    },
+                    {
+                        label: '2 board games',
+                        purchased: true,
+                        highPriority: false,
+                    },
+                    {
+                        label: '20 cups',
+                        purchased: false,
+                        highPriority: false,
+                    },
+                ]
+            },
+            methods: {
+                saveItem: function () {
+                    this.items.push({
+                        label: this.newItem,
+                        purchased: false,
+                    });
+                    this.newItem = '';
+                },
+                changeState: function (newState) {
+                    this.state = newState;
+                    this.newItem = '';
+                },
+                togglePurchased: function (item) {
+                    item.purchased = !item.purchased;
+                }
+            },
+            computed: {
+                reversedItems() {
+                    return this.items.slice(0).reverse();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
